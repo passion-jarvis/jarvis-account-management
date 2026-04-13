@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jarvis — Client Success SOP</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      background: #0c0c0c;
+      color: #f0f0f0;
+      line-height: 1.65;
+      padding: 0 0 80px 0;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #111;
+      border-bottom: 3px solid #FFD700;
+      padding: 40px 48px 32px;
+    }
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .header-sub {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #999;
+    }
+    .header-meta {
+      margin-top: 20px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: #ccc;
+    }
+    .meta-tag span { color: #FFD700; font-weight: 700; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 56px; }
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #FFD700;
+      margin-bottom: 20px;
+    }
+
+    /* ── PHILOSOPHY BOX ── */
+    .philosophy {
+      background: #111;
+      border-left: 4px solid #FFD700;
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+    .philosophy p {
+      font-size: 15px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    .philosophy p:last-child { margin-bottom: 0; }
+    .philosophy strong { color: #FFD700; }
+
+    /* ── FLOWCHART ── */
+    .flowchart {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 40px 32px;
+      margin-top: 16px;
+      overflow-x: auto;
+    }
+    .flow-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      margin-bottom: 0;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 120px;
+    }
+    .flow-box {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+      width: 120px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #f0f0f0;
+      line-height: 1.4;
+    }
+    .flow-box.yellow {
+      border-color: #FFD700;
+      background: #1a1800;
+      color: #FFD700;
+    }
+    .flow-box.red {
+      border-color: #ff4444;
+      background: #1a0000;
+      color: #ff6666;
+    }
+    .flow-box.green {
+      border-color: #44ff88;
+      background: #001a0a;
+      color: #44ff88;
+    }
+    .flow-box.trigger {
+      border-color: #888;
+      background: #161616;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .flow-label {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      margin-top: 14px;
+      color: #444;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .flow-down {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 6px 0;
+      color: #444;
+      font-size: 18px;
+    }
+    .flow-section-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+      text-align: center;
+      margin: 28px 0 16px;
+    }
+    .flow-divider {
+      border: none;
+      border-top: 1px solid #222;
+      margin: 24px 0;
+    }
+
+    /* ── PHASE CARDS ── */
+    .phase {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 28px;
+      background: #141414;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .phase-badge {
+      background: #FFD700;
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .phase-badge.red { background: #ff4444; color: #fff; }
+    .phase-badge.green { background: #44ff88; color: #000; }
+    .phase-badge.orange { background: #ff9944; color: #000; }
+    .phase-badge.blue { background: #4488ff; color: #fff; }
+
+    .phase-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .phase-desc {
+      margin-left: auto;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* ── STEP ── */
+    .step {
+      padding: 24px 28px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .step-timing {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 12px;
+      color: #888;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .step-info h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .step-info p {
+      font-size: 14px;
+      color: #888;
+    }
+
+    /* ── DELIVERABLE BOX ── */
+    .deliverable-box {
+      background: #0e0e0e;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .deliverable-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FFD700;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #1a1a1a;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .checklist li:last-child { border-bottom: none; padding-bottom: 0; }
+    .checklist input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #FFD700;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .checklist li label { cursor: pointer; line-height: 1.5; }
+    .checklist li label span.tag {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 1px 7px;
+      color: #888;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .checklist li label span.tag.ghl { border-color: #4488ff; color: #4488ff; }
+    .checklist li label span.tag.call { border-color: #44ff88; color: #44ff88; }
+    .checklist li label span.tag.email { border-color: #FFD700; color: #FFD700; }
+    .checklist li label span.tag.hard { border-color: #ff4444; color: #ff4444; }
+
+    /* ── HEALTH SCORE TABLE ── */
+    .health-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    .health-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #666;
+      border-bottom: 1px solid #222;
+    }
+    .health-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #1a1a1a;
+      vertical-align: top;
+    }
+    .health-table tr:last-child td { border-bottom: none; }
+    .score-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .score-dot.green { background: #44ff88; }
+    .score-dot.yellow { background: #FFD700; }
+    .score-dot.red { background: #ff4444; }
+
+    /* ── RULE CALLOUT ── */
+    .rule-callout {
+      background: #0d0d0d;
+      border: 1px solid #ff4444;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .rule-callout .icon { font-size: 20px; flex-shrink: 0; }
+    .rule-callout p { font-size: 14px; color: #ccc; line-height: 1.6; }
+    .rule-callout strong { color: #ff6666; }
+
+    /* ── WEEKLY TARGETS ── */
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .target-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .target-card h4 {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .target-card .target-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #FFD700;
+    }
+    .target-card .target-label {
+      font-size: 12px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* ── ESCALATION PATH ── */
+    .escalation-path {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .esc-box {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 16px 18px;
+      min-width: 150px;
+      flex: 1;
+    }
+    .esc-box h4 { font-size: 12px; color: #888; margin-bottom: 4px; }
+    .esc-box p { font-size: 14px; color: #fff; font-weight: 600; }
+    .esc-box .esc-time { font-size: 12px; color: #FFD700; margin-top: 4px; }
+    .esc-arrow {
+      font-size: 22px;
+      color: #333;
+      padding: 0 8px;
+      flex-shrink: 0;
+    }
+
+    /* ── WEEKLY SCORECARD ── */
+    .scorecard-note {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+    .scorecard-note h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+    .scorecard-note ul { list-style: none; }
+    .scorecard-note ul li {
+      font-size: 14px;
+      color: #ccc;
+      padding: 6px 0;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      gap: 10px;
+    }
+    .scorecard-note ul li:last-child { border-bottom: none; }
+    .scorecard-note ul li::before { content: "→"; color: #FFD700; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 64px;
+      padding: 28px 48px;
+      border-top: 1px solid #1e1e1e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFD700;
+      letter-spacing: -0.5px;
+    }
+    .footer-meta { font-size: 13px; color: #555; }
+
+    /* Print */
+    @media print {
+      body { background: #fff; color: #000; }
+      .header, .phase, .philosophy, .flowchart, .scorecard-note { background: #fff !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-label">Internal SOP — Client Success</div>
+  <h1>Account Management Playbook</h1>
+  <div class="header-sub">Ruth's complete guide to client retention, escalation, and upsell.</div>
+  <div class="header-meta">
+    <div class="meta-tag">Owner: <span>Ruth</span></div>
+    <div class="meta-tag">Reviewed by: <span>Passion</span></div>
+    <div class="meta-tag">Version: <span>1.0</span></div>
+    <div class="meta-tag">Last updated: <span>April 2026</span></div>
+    <div class="meta-tag">Target: <span>0 surprise cancellations</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PHILOSOPHY -->
+  <div class="section">
+    <div class="section-title">Core Philosophy</div>
+    <div class="philosophy">
+      <p><strong>A monthly email is not client success. It's a courtesy.</strong> Client success means the client is getting the outcome they paid for — time back, tasks handled, business growing.</p>
+      <p>If a client doesn't reply, that is not "all good." <strong>No response = yellow flag. Always.</strong></p>
+      <p>The goal of this SOP is simple: <strong>no client should ever be surprised enough to send a formal cancellation email.</strong> Every cancellation means we failed weeks before. Catch it early, fix it fast, or escalate immediately.</p>
+      <p><strong>Your job is not to send emails. Your job is to make clients successful.</strong></p>
+    </div>
+  </div>
+
+  <!-- FLOWCHART -->
+  <div class="section">
+    <div class="section-title">Master Flowchart — Client Lifecycle</div>
+    <div class="flowchart">
+
+      <div class="flow-section-label">Onboarding Phase</div>
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-box yellow">Client Signs</div>
+          <div class="flow-label">Day 0</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box">Welcome Call<br/>+ VA Intro</div>
+          <div class="flow-label">Day 1</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box">VA Check-in<br/>Confirm Start</div>
+          <div class="flow-label">Day 7</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box">Outcome Check<br/>Health Score</div>
+          <div class="flow-label">Day 14</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box green">Active Client</div>
+          <div class="flow-label">Ongoing</div>
+        </div>
+      </div>
+
+      <hr class="flow-divider"/>
+
+      <div class="flow-section-label">Monthly Cadence (Every Active Client)</div>
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-box">Monthly Email<br/>Sent</div>
+          <div class="flow-label">Day 1</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box trigger">Client replies<br/>within 5 days?</div>
+          <div class="flow-label">Decision</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-box green">YES → Update<br/>Health Score</div>
+          <div class="flow-label">Green</div>
+        </div>
+        <div class="flow-arrow" style="color:#ff4444">→</div>
+        <div class="flow-node">
+          <div class="flow-box red">NO → Call<br/>Immediately</div>
+          <div class="flow-label">Yellow Flag</div>
+        </div>
+      </div>
+
+      <hr class="flow-divider"/>
+
+      <div class="flow-section-label">Health Score Escalation</div>
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-box green">GREEN<br/>Monthly email</div>
+        </div>
+        <div class="flow-arrow" style="color:#FFD700">→</div>
+        <div class="flow-node">
+          <div class="flow-box yellow">YELLOW<br/>Ruth calls<br/>within 48hrs</div>
+        </div>
+        <div class="flow-arrow" style="color:#ff4444">→</div>
+        <div class="flow-node">
+          <div class="flow-box red">RED<br/>Ruth + Passion<br/>call same day</div>
+        </div>
+        <div class="flow-arrow" style="color:#ff4444">→</div>
+        <div class="flow-node">
+          <div class="flow-box red">CANCEL EMAIL<br/>Reply 1hr,<br/>Call 2hrs</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 1: ONBOARDING -->
+  <div class="section">
+    <div class="section-title">Phase 1 — Onboarding</div>
+
+    <!-- DAY 1 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-badge">Day 1</div>
+        <div class="phase-title">Welcome Call + VA Introduction</div>
+        <div class="phase-desc">Within 24 hours of signing</div>
+      </div>
+      <div class="step">
+        <div class="step-header">
+          <div class="step-timing">Timing: Within 24hrs of sign</div>
+          <div class="step-info">
+            <h3>30-Minute Welcome Call</h3>
+            <p>Set expectations, introduce the VA, and document the client's top pain points. This call defines what success looks like for the next 90 days.</p>
+          </div>
+        </div>
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — all must be completed</div>
+          <ul class="checklist" id="day1">
+            <li><input type="checkbox" id="d1-1"/><label for="d1-1">Welcome call scheduled and completed (30 min minimum) <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="d1-2"/><label for="d1-2">Client's top 3 pain points documented word-for-word in GHL <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d1-3"/><label for="d1-3">VA's full name, email, and WhatsApp shared with client <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="d1-4"/><label for="d1-4">90-day success milestones agreed upon and confirmed in writing — email to client <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="d1-5"/><label for="d1-5">GHL contact tagged: <em>"Onboarding – Day 1 Complete"</em> <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d1-6"/><label for="d1-6">Call notes logged in GHL under client profile <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d1-7"/><label for="d1-7">Initial health score set to GREEN in GHL <span class="tag ghl">GHL</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 7 -->
+    <div class="phase" style="margin-top:16px">
+      <div class="phase-header">
+        <div class="phase-badge">Day 7</div>
+        <div class="phase-title">First Check-in — VA Confirmed Started</div>
+        <div class="phase-desc">7 days after signing</div>
+      </div>
+      <div class="step">
+        <div class="step-header">
+          <div class="step-timing">Timing: Day 7</div>
+          <div class="step-info">
+            <h3>VA Start Confirmation</h3>
+            <p>Confirm the VA has logged in, been given a real task, and that the client is satisfied with the first interaction. Do not assume silence means success.</p>
+          </div>
+        </div>
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — all must be completed</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="d7-1"/><label for="d7-1">Text or email sent: "Is the VA working? What's the first task you've given them?" <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="d7-2"/><label for="d7-2">Client confirms VA logged in and has been assigned at least one real task <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="d7-3"/><label for="d7-3">If client does NOT respond within 48 hours — call them immediately <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="d7-4"/><label for="d7-4">GHL note logged: "Day 7 check-in complete — [VA status + client feedback]" <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d7-5"/><label for="d7-5">Health score updated: Green / Yellow / Red based on response <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d7-6"/><label for="d7-6">If Yellow or Red — escalation protocol triggered immediately (see Phase 4) <span class="tag hard">hard rule</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 14 -->
+    <div class="phase" style="margin-top:16px">
+      <div class="phase-header">
+        <div class="phase-badge">Day 14</div>
+        <div class="phase-title">Outcome Check — Is the VA Actually Saving Them Time?</div>
+        <div class="phase-desc">2 weeks after signing</div>
+      </div>
+      <div class="step">
+        <div class="step-header">
+          <div class="step-timing">Timing: Day 14</div>
+          <div class="step-info">
+            <h3>15-Minute Outcome Call</h3>
+            <p>This is the most important early touchpoint. You are verifying the client is getting ROI. Ask directly. Do not guess.</p>
+          </div>
+        </div>
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — all must be completed</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="d14-1"/><label for="d14-1">15-minute call completed — ask: "Is your VA saving you time? What's working? What's not?" <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="d14-2"/><label for="d14-2">Client gives a specific answer — not just "yeah it's fine" — document what they said <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d14-3"/><label for="d14-3">Any issues or complaints documented and shared with the VA within 24 hours <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="d14-4"/><label for="d14-4">Health score updated and logged in GHL <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d14-5"/><label for="d14-5">GHL contact tagged: <em>"Onboarding Complete"</em> — move to Active status <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="d14-6"/><label for="d14-6">If Yellow or Red — escalation protocol triggered same day (see Phase 4) <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="d14-7"/><label for="d14-7">If Green — note in GHL as potential referral ask at Day 60+ <span class="tag ghl">GHL</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2: MONTHLY CADENCE -->
+  <div class="section">
+    <div class="section-title">Phase 2 — Monthly Cadence (Every Active Client)</div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-badge green">Monthly</div>
+        <div class="phase-title">Monthly Health Check + Score Update</div>
+        <div class="phase-desc">Repeat every 30 days</div>
+      </div>
+      <div class="step">
+        <div class="step-header">
+          <div class="step-timing">Day 1 of each month</div>
+          <div class="step-info">
+            <h3>Personalized Monthly Outreach</h3>
+            <p>Not a template blast. Reference something specific from their last conversation or a task the VA completed. This is how clients feel seen.</p>
+          </div>
+        </div>
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — all must be completed</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="m1-1"/><label for="m1-1">Personalized email sent to every active client — reference a specific VA task or win <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="m1-2"/><label for="m1-2">Date logged in GHL: "Monthly outreach sent [date]" <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="m1-3"/><label for="m1-3">If no reply within 5 business days — call the client. Do NOT send a second email. <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="m1-4"/><label for="m1-4">Call attempt logged in GHL regardless of outcome <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="m1-5"/><label for="m1-5">Health score updated for every client by end of month <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="m1-6"/><label for="m1-6">All Yellow and Red clients reviewed with Passion in weekly meeting <span class="tag hard">hard rule</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3: HEALTH SCORE -->
+  <div class="section">
+    <div class="section-title">Phase 3 — Health Score System</div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-badge blue">Scoring</div>
+        <div class="phase-title">Client Health Score Definitions</div>
+        <div class="phase-desc">Updated monthly — or whenever a trigger event occurs</div>
+      </div>
+      <div class="step">
+        <div class="deliverable-box">
+          <table class="health-table">
+            <thead>
+              <tr>
+                <th>Score</th>
+                <th>Definition</th>
+                <th>Trigger Criteria</th>
+                <th>Action Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="score-dot green"></span><strong style="color:#44ff88">GREEN</strong></td>
+                <td style="color:#ccc">Client is active, responsive, and getting value</td>
+                <td style="color:#888">Replied within 5 days. No complaints. VA performing.</td>
+                <td style="color:#ccc">Monthly email only. Ask for referral at 60+ days.</td>
+              </tr>
+              <tr>
+                <td><span class="score-dot yellow"></span><strong style="color:#FFD700">YELLOW</strong></td>
+                <td style="color:#ccc">Client is disengaged or mildly dissatisfied</td>
+                <td style="color:#888">No reply in 5+ days. Slow responses. Vague complaints. Any mention of dissatisfaction.</td>
+                <td style="color:#ccc"><strong style="color:#FFD700">Ruth calls within 48 hours. No exceptions.</strong></td>
+              </tr>
+              <tr>
+                <td><span class="score-dot red"></span><strong style="color:#ff6666">RED</strong></td>
+                <td style="color:#ccc">Client is at high risk of cancellation</td>
+                <td style="color:#888">No response 14+ days. Formal complaint on record. Mentioned canceling. Formal cancel email received.</td>
+                <td style="color:#ccc"><strong style="color:#ff6666">Ruth + Passion call same day. Escalate immediately.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rule-callout" style="margin-top:20px">
+          <div class="icon">⚠️</div>
+          <p><strong>Hard Rule:</strong> Zero clients should end the month at Red without Passion being notified. If a client goes Red and Passion doesn't know within 24 hours, that is a failure of this SOP.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4: ESCALATION PROTOCOL -->
+  <div class="section">
+    <div class="section-title">Phase 4 — Escalation Protocol</div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-badge red">Escalation</div>
+        <div class="phase-title">Yellow Client Protocol</div>
+        <div class="phase-desc">Trigger: client goes Yellow at any point</div>
+      </div>
+      <div class="step">
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — complete in order</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="y1-1"/><label for="y1-1">Health score updated to YELLOW in GHL with date and reason <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="y1-2"/><label for="y1-2">Ruth calls client within 48 hours — do not send another email first <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="y1-3"/><label for="y1-3">On call: ask "What specifically has fallen short for you?" — document verbatim <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="y1-4"/><label for="y1-4">Identify root cause: VA performance, communication gap, or expectation mismatch <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="y1-5"/><label for="y1-5">If VA issue: offer VA swap within 48 hours — confirm in writing <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="y1-6"/><label for="y1-6">Schedule follow-up check-in within 7 days of the call <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="y1-7"/><label for="y1-7">If resolved → update health score to GREEN <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="y1-8"/><label for="y1-8">If unresolved after 7 days → escalate to RED immediately <span class="tag hard">hard rule</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" style="margin-top:16px">
+      <div class="phase-header">
+        <div class="phase-badge red">Escalation</div>
+        <div class="phase-title">Red Client Protocol + Cancel Email Response</div>
+        <div class="phase-desc">Trigger: client goes Red OR sends cancel email</div>
+      </div>
+      <div class="step">
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables — complete in order, same day</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="r1-1"/><label for="r1-1">Alert Passion via WhatsApp immediately with client name + situation summary <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="r1-2"/><label for="r1-2">If cancel email received: Ruth replies within 1 hour acknowledging and requesting a call <span class="tag email">email</span></label></li>
+            <li><input type="checkbox" id="r1-3"/><label for="r1-3">Ruth calls client within 2 hours of cancel email — do not wait for them to book <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="r1-4"/><label for="r1-4">On call: listen first. Do not defend. Ask "What would need to change for you to stay?" <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="r1-5"/><label for="r1-5">Document every complaint and promise made on the call in GHL <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="r1-6"/><label for="r1-6">Check contract: does it allow immediate cancellation? (30-day notice required?) <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="r1-7"/><label for="r1-7">Offer VA swap as primary resolution before discussing any refund <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="r1-8"/><label for="r1-8">Do NOT promise a refund without Passion's approval <span class="tag hard">hard rule</span></label></li>
+            <li><input type="checkbox" id="r1-9"/><label for="r1-9">If client stays: new VA assigned within 48 hours, follow-up call in 7 days <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="r1-10"/><label for="r1-10">If client leaves: document full reason in GHL, debrief with Passion <span class="tag ghl">GHL</span></label></li>
+          </ul>
+        </div>
+
+        <div class="rule-callout">
+          <div class="icon">🚨</div>
+          <p><strong>Zabrina Rule:</strong> No client should ever send a formal cancellation email as their first complaint. If they do, something was missed weeks earlier. After every Red client, Ruth and Passion do a 10-minute debrief to identify where the SOP broke down.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 5: UPSELL -->
+  <div class="section">
+    <div class="section-title">Phase 5 — Upsell + Referral (60+ Days)</div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-badge orange">Growth</div>
+        <div class="phase-title">60-Day Upsell + Referral Trigger</div>
+        <div class="phase-desc">Green clients only — 60+ days active</div>
+      </div>
+      <div class="step">
+        <div class="deliverable-box">
+          <div class="deliverable-title">Deliverables</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="u1-1"/><label for="u1-1">At 60-day mark: check health score — only proceed if GREEN <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="u1-2"/><label for="u1-2">Schedule 15-minute "value review" call — frame as a check-in, not a sales call <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="u1-3"/><label for="u1-3">On call: ask "Is there anything the VA can take off your plate that they're not doing yet?" <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="u1-4"/><label for="u1-4">Referral ask: "Do you know any other business owners who could use what we do for you?" <span class="tag call">call</span></label></li>
+            <li><input type="checkbox" id="u1-5"/><label for="u1-5">Any referral names → added to GHL pipeline immediately with source tagged <span class="tag ghl">GHL</span></label></li>
+            <li><input type="checkbox" id="u1-6"/><label for="u1-6">Upsell conversation logged in GHL: outcome + next action <span class="tag ghl">GHL</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTH'S WEEKLY SCORECARD TARGETS -->
+  <div class="section">
+    <div class="section-title">Ruth's Weekly Scorecard Targets</div>
+    <div class="target-grid">
+      <div class="target-card">
+        <h4>Yellow Clients Called</h4>
+        <div class="target-num">100%</div>
+        <div class="target-label">Within 48hrs of going Yellow</div>
+      </div>
+      <div class="target-card">
+        <h4>Red Clients Escalated</h4>
+        <div class="target-num">Same Day</div>
+        <div class="target-label">Zero Red clients unreported</div>
+      </div>
+      <div class="target-card">
+        <h4>Monthly Outreach</h4>
+        <div class="target-num">100%</div>
+        <div class="target-label">All active clients contacted</div>
+      </div>
+      <div class="target-card">
+        <h4>Health Scores Updated</h4>
+        <div class="target-num">Weekly</div>
+        <div class="target-label">Every client scored in GHL</div>
+      </div>
+      <div class="target-card">
+        <h4>Referral Asks</h4>
+        <div class="target-num">2/day</div>
+        <div class="target-label">Green clients 60+ days</div>
+      </div>
+      <div class="target-card">
+        <h4>VA Swaps Offered</h4>
+        <div class="target-num">&lt;48hrs</div>
+        <div class="target-label">From complaint to new VA assigned</div>
+      </div>
+    </div>
+
+    <div class="scorecard-note">
+      <h3>What Ruth reports in Monday review with Passion</h3>
+      <ul>
+        <li>Total active clients and current health score breakdown (Green / Yellow / Red counts)</li>
+        <li>Any clients that moved to Yellow or Red this week — reason and action taken</li>
+        <li>Any clients at risk of churn — Passion to call personally if needed</li>
+        <li>Referrals captured this week and pipeline status</li>
+        <li>VA issues flagged — quality problems, client complaints, swaps needed</li>
+        <li>Any promised refunds or credits pending Passion approval</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Jarvis</div>
+  <div class="footer-meta">Client Success SOP v1.0 — Internal use only. Owner: Ruth. Reviewed by: Passion.</div>
+</div>
+
+<script>
+  // Persist checkbox state in localStorage
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    const key = 'jarvis-sop-' + cb.id;
+    if (localStorage.getItem(key) === 'true') {
+      cb.checked = true;
+      cb.closest('li').style.opacity = '0.5';
+    }
+    cb.addEventListener('change', function() {
+      localStorage.setItem(key, this.checked);
+      this.closest('li').style.opacity = this.checked ? '0.5' : '1';
+    });
+  });
+</script>
+
+</body>
+</html>
